@@ -1,10 +1,14 @@
 import { Suspense } from "react"
-import Params from "./params"
+import Some from "./params"
 
 export default function Category({ params }) {
   return (
-    <Suspense fallback="please wait">
-      <Params params={params} />
-    </Suspense>
+    <>
+      <h1>Category</h1>
+
+      <Suspense fallback="please wait">
+        <Some params={params} />
+      </Suspense>
+    </>
   )
 }
