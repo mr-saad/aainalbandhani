@@ -1,9 +1,12 @@
 import Product from "@/components/Product"
 import sanity from "@/lib/sanity"
 import { PortableText } from "@portabletext/react"
+import { cacheLife } from "next/cache"
+import Link from "next/link"
 
 const getSections = async () => {
   "use cache"
+  cacheLife("hours")
   return await sanity.fetch(
     `*[_type=="section"]{_id,title,desc,"products": *[_type=='product' && _id in ^.products[]._ref]{_id,title,desc,price,"img":image.asset->{url,metadata{lqip}}},content}`,
   )
@@ -28,7 +31,16 @@ function Section({ title, desc, products, content }) {
       ) : null}
       {content ? (
         <div className="mt-10">
-          <PortableText value={content} />
+          <PortableText
+            components={{
+              marks: {
+                link: ({ children, value }) => (
+                  <Link href={value?.href}>{children}</Link>
+                ),
+              },
+            }}
+            value={content}
+          />
         </div>
       ) : null}
     </div>

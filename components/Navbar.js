@@ -1,67 +1,54 @@
-"use client"
 import Link from "next/link"
 import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "./ui/navigation-menu"
-import { usePathname } from "next/navigation"
+import NavLink from "./NavLink"
+import { Suspense } from "react"
+import Toggler from "./Toggler"
 
-export default function Navbar() {
-  const path = usePathname()
+export default function Navbar({ categories }) {
   return (
-    <header className="p-5 gap-2 flex flex-wrap justify-between border-b">
+    <header className="p-5 gap-2 grid grid-cols-2 items-center border-b">
       <h1 className="text-xl tracking-tighter">
         <Link href="/">Aainal Bandhani</Link>
       </h1>
-      <NavigationMenu>
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuLink
-              asChild
-              className={path === "/" ? "bg-accent" : ""}
-            >
-              <Link href={"/"}>Home</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Products</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <NavigationMenuLink
-                asChild
-                className={path === "/products/dupatta" ? "bg-accent" : ""}
-              >
-                <Link href="/products/dupatta">Dupatta</Link>
-              </NavigationMenuLink>
-              <NavigationMenuLink
-                asChild
-                className={path === "/products/saree" ? "bg-accent" : ""}
-              >
-                <Link href="/products/saree">Saree</Link>
-              </NavigationMenuLink>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink
-              asChild
-              className={path === "/about" ? "bg-accent" : ""}
-            >
-              <Link href={"/about"}>About</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink
-              asChild
-              className={path === "/contact" ? "bg-accent" : ""}
-            >
-              <Link href={"/contact"}>Contact</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
+      <Toggler />
+      <Suspense fallback="">
+        <NavigationMenu
+          className="relative hidden md:block col-span-2 md:col-span-1 md:justify-self-end row-start-2 md:row-start-auto max-w-none justify-start"
+          viewport={false}
+        >
+          <NavigationMenuList className="flex-col md:flex-row items-start">
+            <NavigationMenuItem>
+              <NavLink href={"/"}>Home</NavLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger className="cursor-pointer">
+                Products
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                {categories
+                  ? categories.map((cat) => (
+                      <NavLink key={cat} href={`/products/${cat}`}>
+                        {cat}
+                      </NavLink>
+                    ))
+                  : null}
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavLink href={"/about"}>About</NavLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavLink href={"/contact"}>Contact</NavLink>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </Suspense>
     </header>
   )
 }

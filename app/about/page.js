@@ -21,7 +21,7 @@ export default function About() {
           the tiny knots that hold stories of mothers, daughters and festivals
           gone by. That’s what makes every Bandhej piece truly one-of-a-kind.
         </p>
-        <ul className="list-[circle]">
+        <ul>
           Our goal is simple
           <li>To connect tradition with today.</li>
           <li>To bring the handmade closer to the digital.</li>

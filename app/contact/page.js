@@ -7,7 +7,7 @@ export default function Contact() {
           We’d love to hear from you whether it’s a question, a custom order or
           just to say hello!
         </p>
-        <ul className="list-[circle] ">
+        <ul>
           Reach us anytime
           <li>Email: help@aainalbandhani.com</li>
           <li>Call/WhatsApp: +91 98765 43210</li>
@@ -17,7 +17,7 @@ export default function Contact() {
           We’re a small team with big hearts, so while we might not reply
           instantly, we promise every message is read and answered with care.
         </p>
-        <ul className="list-[circle] ">
+        <ul>
           You can also follow our journey on
           <li>📸 Instagram</li>
           <li>🧵 Threads</li>

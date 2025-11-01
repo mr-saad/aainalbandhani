@@ -2,7 +2,8 @@ import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
-import { Suspense } from "react"
+import sanity from "@/lib/sanity"
+import { cacheLife } from "next/cache"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,15 +20,20 @@ export const metadata = {
   description: "Exclusive Bandhani Online Store",
 }
 
-export default function RootLayout({ children }) {
+const getCategories = async () => {
+  "use cache"
+  cacheLife("hours")
+  return sanity.fetch(`array::unique(*[_type=="product"].category)`)
+}
+
+export default async function RootLayout({ children }) {
+  const categories = await getCategories()
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Suspense fallback="">
-          <Navbar />
-        </Suspense>
+        <Navbar categories={categories} />
         <main className="p-5 max-w-300 mx-auto prose">{children}</main>
         <Footer />
       </body>

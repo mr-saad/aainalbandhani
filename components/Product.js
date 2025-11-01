@@ -12,7 +12,7 @@ export default function Product({ title, desc, price, img }) {
         src={img.url}
         placeholder="blur"
         blurDataURL={img.metadata.lqip}
-        className="w-full aspect-square object-cover not-prose"
+        className="w-full aspect-square object-cover not-prose rounded"
       />
       <h3>{title}</h3>
       <p>{desc}</p>
