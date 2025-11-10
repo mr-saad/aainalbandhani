@@ -1,7 +1,8 @@
 import Image from "next/image"
 import { Button } from "./ui/button"
+import Link from "next/link"
 
-export default function Product({ title, desc, price, img }) {
+export default function Product({ title, desc, price, img, category, slug }) {
   return (
     <div className="p-5 border rounded flex flex-col">
       <Image
@@ -16,8 +17,11 @@ export default function Product({ title, desc, price, img }) {
       />
       <h3>{title}</h3>
       <p>{desc}</p>
-      <p>₹{price}</p>
-      <Button className="mt-auto">Buy Now</Button>
+      <Button asChild className="mt-auto">
+        <Link className="no-underline" href={`/products/${category}/${slug}`}>
+          Buy Now
+        </Link>
+      </Button>
     </div>
   )
 }

@@ -14,14 +14,14 @@ export default function Footer() {
       </div>
       <div className="mt-30 max-w-7xl mx-auto grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
         <div>
-          <b className="border-b border-black">Catalog</b>
+          <b>Catalog</b>
           <ul>
             <li>Dupatta</li>
             <li>Saree</li>
           </ul>
         </div>
         <div>
-          <b className="border-b border-black">Info</b>
+          <b>Info</b>
           <ul>
             <li>Return Policy</li>
             <li>Terms & Conditions</li>
@@ -33,7 +33,7 @@ export default function Footer() {
           <p className="text-right">by Aainal Khatri</p>
         </div>
         <div>
-          <b className="border-b border-black">Services</b>
+          <b>Services</b>
           <ul>
             <li>Wishlist</li>
             <li>Account</li>
@@ -43,7 +43,7 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <b className="border-b border-black">Extras</b>
+          <b>Extras</b>
           <ul>
             <a
               target="_blank"

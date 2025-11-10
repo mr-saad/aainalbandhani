@@ -27,8 +27,11 @@ export default function Navbar({ categories }) {
               <NavLink href={"/"}>Home</NavLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
+              <NavLink href={"/products"}>Products</NavLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
               <NavigationMenuTrigger className="cursor-pointer">
-                Products
+                Categories
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 {categories

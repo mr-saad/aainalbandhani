@@ -6,7 +6,7 @@ const getProducts = async () => {
   "use cache"
   cacheLife("hours")
   return sanity.fetch(
-    `*[_type=='product']{_id,category,title,desc,price,"img":image.asset->{url,metadata{lqip}}}`,
+    `*[_type=='product']{_id,"slug":slug.current,category,title,desc,price,category,"img":image.asset->{url,metadata{lqip}}}`,
   )
 }
 export default async function Products() {

@@ -5,7 +5,7 @@ const getProductsByCategory = async (category) => {
   console.log(category)
   return (
     sanity.fetch(
-      `*[_type=="product" && category==$category]{_id,title,desc,price,category,"img":image.asset->{url,metadata{lqip}}}`,
+      `*[_type=="product" && category==$category]{_id,"slug":slug.current,title,desc,price,category,"img":image.asset->{url,metadata{lqip}}}`,
       {
         category,
       },

@@ -8,7 +8,7 @@ const getSections = async () => {
   "use cache"
   cacheLife("hours")
   return await sanity.fetch(
-    `*[_type=="section"]{_id,title,desc,"products": *[_type=='product' && _id in ^.products[]._ref]{_id,title,desc,price,"img":image.asset->{url,metadata{lqip}}},content}`,
+    `*[_type=="section"]{_id,title,desc,"products": *[_type=='product' && _id in ^.products[]._ref]{_id,"slug":slug.current,title,desc,price,category,"img":image.asset->{url,metadata{lqip}}},content}`,
   )
 }
 
