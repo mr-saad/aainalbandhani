@@ -2,11 +2,10 @@ import Image from "next/image"
 import { Button } from "./ui/button"
 import Link from "next/link"
 
-export default function Product({ title, desc, price, img, category, slug }) {
+export default function Product({ title, desc, img, category, slug }) {
   return (
     <div className="p-5 border rounded flex flex-col">
       <Image
-        unoptimized
         width={400}
         height={400}
         alt={title}

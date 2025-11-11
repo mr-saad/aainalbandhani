@@ -3,7 +3,7 @@ import { Input } from "./ui/input"
 
 export default function Footer() {
   return (
-    <footer className="border-t p-5">
+    <footer className="border-t p-5 mt-20">
       <div className="text-center max-w-100 mx-auto">
         <h4 className="text-3xl font-bold">Subscribe</h4>
         <p className="mb-2">to get the drip before it drops.</p>
@@ -12,7 +12,7 @@ export default function Footer() {
           <Button type="button">Join</Button>
         </form>
       </div>
-      <div className="mt-30 max-w-7xl mx-auto grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+      <div className="mt-10 max-w-7xl mx-auto grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
         <div>
           <b>Catalog</b>
           <ul>

@@ -3,7 +3,6 @@ import "./globals.css"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import sanity from "@/lib/sanity"
-import { cacheLife } from "next/cache"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,8 +20,6 @@ export const metadata = {
 }
 
 const getCategories = async () => {
-  "use cache"
-  cacheLife("hours")
   return sanity.fetch(`array::unique(*[_type=="product"].category)`)
 }
 

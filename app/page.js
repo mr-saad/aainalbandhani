@@ -1,14 +1,14 @@
 import Product from "@/components/Product"
 import sanity from "@/lib/sanity"
 import { PortableText } from "@portabletext/react"
-import { cacheLife } from "next/cache"
+import Image from "next/image"
 import Link from "next/link"
 
+export const revalidate = 60
+
 const getSections = async () => {
-  "use cache"
-  cacheLife("hours")
   return await sanity.fetch(
-    `*[_type=="section"]{_id,title,desc,"products": *[_type=='product' && _id in ^.products[]._ref]{_id,"slug":slug.current,title,desc,price,category,"img":image.asset->{url,metadata{lqip}}},content}`,
+    `*[_type=="section"]{_id,title,desc,"products": *[_type=='product' && _id in ^.products[]._ref]{_id,"slug":slug.current,title,desc,price,category,"img":image.asset->{url,metadata{lqip}}},content[]{...,_type=="image"=>{"url":asset->url,"lqip":asset->metadata.lqip}}}`,
   )
 }
 
@@ -33,6 +33,20 @@ function Section({ title, desc, products, content }) {
         <div className="mt-10">
           <PortableText
             components={{
+              types: {
+                image: ({ value }) => {
+                  return (
+                    <Image
+                      src={value.url}
+                      blurDataURL={value.lqip}
+                      width={400}
+                      height={400}
+                      alt={"Aainal Bandhani Home Page Image"}
+                      className="rounded aspect-square object-cover w-full not-prose"
+                    />
+                  )
+                },
+              },
               marks: {
                 link: ({ children, value }) => (
                   <Link href={value?.href}>{children}</Link>

@@ -3,6 +3,7 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
+  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "./ui/navigation-menu"
@@ -17,7 +18,17 @@ export default function Navbar({ categories }) {
         <Link href="/">Aainal Bandhani</Link>
       </h1>
       <Toggler />
-      <Suspense fallback="">
+      <Suspense
+        fallback={
+          <NavigationMenu className="md:justify-self-end">
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuLink>Loading</NavigationMenuLink>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        }
+      >
         <NavigationMenu
           className="relative hidden md:block col-span-2 md:col-span-1 md:justify-self-end row-start-2 md:row-start-auto max-w-none justify-start"
           viewport={false}

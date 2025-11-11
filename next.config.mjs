@@ -1,11 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  cacheComponents: true,
-  experimental: {
-    turbopackFileSystemCacheForDev: true,
-  },
   images: {
-    remotePatterns: [{ protocol: "https", hostname: "cdn.sanity.io" }],
+    dangerouslyAllowLocalIP: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+      },
+    ],
+    formats: ["image/avif", "image/webp"],
   },
 }
 
